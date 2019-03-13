@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="information"
+          class="paczusia.WeatherInformation">
+    </bean>
+
+    <bean id="weatherBreakingNewsService"
+          class="paczusia.WeatherBreakingNewsService">
+    </bean>
+
+    <bean id="weatherInformation"
+          class="paczusia.WeatherInformation">
+        <constructor-arg ref="weatherBreakingNewsService"/>
+    </bean>
+
+    <bean id="myMusicBreakingNewsServer"
+          class="paczusia.MusicBreakingNewsService">
+    </bean>
+
+    <bean id="musicInformation"
+          class="paczusia.MusicInformation">
+        <property name="breakingNewsService" ref = "myMusicBreakingNewsServer"/>
+        <property name="name" value="rolling stones" />
+        <property name="description" value="${musicinformation.description}" />
+    </bean>
+
+    <context:property-placeholder location="information.properties" />
+
+
+</beans>
+
+
+
